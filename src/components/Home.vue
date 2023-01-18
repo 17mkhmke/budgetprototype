@@ -28,9 +28,8 @@ export default {
 .container-fluid{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  border: 2px solid red;
   height: 85vh;
 }
 .flip-card {
