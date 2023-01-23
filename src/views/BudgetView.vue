@@ -8,6 +8,7 @@
 </template>
 
 <script>
+
 import IncomeTable from '@/components/IncomeTable.vue'
 import ExpenseTable from '@/components/ExpensesTable.vue'
 

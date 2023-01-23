@@ -5,7 +5,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Percentage</th>
+
                     <th>Amount</th>
                     <th>Edit & Del</th>
                 </tr>
@@ -13,7 +13,7 @@
             <tbody>
                 <tr>
                     <td>ExpenseName</td>
-                    <td>%</td>
+
                     <td>R</td>
                     <td><div class="btn-group">
                         <button class="btn btn-success">Edit</button>
@@ -21,23 +21,31 @@
                     </div></td>
                 </tr>
             </tbody>
-            <tfoot></tfoot>
+            <tfoot>
+              <tr>
+                <th>Savings</th>
+              </tr>
+              <tr>
+                <td>R</td>
+              </tr>
+            </tfoot>
         </table>
         <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#expenseModal">
   ADD EXPENSE
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="expenseModal" tabindex="-1" aria-labelledby="expenseModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Declare an Expense</h1>
+        <h1 class="modal-title fs-5" id="expenseModalLabel">Declare an Expense</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea atque reprehenderit ratione eos aliquid quia saepe fugiat adipisci, neque libero, animi alias accusamus dolores consectetur maiores eaque quas, dicta soluta?
+        <input type="text" placeholder="Expense Name">
+        <input type="number" placeholder="Expense Amount">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

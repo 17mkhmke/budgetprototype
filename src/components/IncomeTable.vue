@@ -5,22 +5,29 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Percentage</th>
                     <th>Amount</th>
                     <th>Edit & Del</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>IncomeName</td>
-                    <td>%</td>
-                    <td>R</td>
+                <tr v-for="income in userIncome" :key="income">
+                    <td>{{ income.name }}</td>
+                    <td>R{{ income.amount }}</td>
                     <td><div class="btn-group">
                         <button class="btn btn-success">Edit</button>
                         <button class="btn btn-danger">Del</button>
-                    </div></td>
+                    </div>
+                  </td>
                 </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <th>Total Income</th>
+              </tr>
+              <tr>
+                <td>R</td>
+              </tr>
+            </tfoot>
         </table>
         <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -36,11 +43,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio esse at perspiciatis laudantium qui, molestias minus provident quis quas quae temporibus sequi ipsa tenetur est iure ipsum beatae commodi porro.
+        <input class="form-control text-center newIncomeName" type="text" placeholder="Income Name">
+        <input class="form-control text-center newIncomeAmount" type="number" placeholder="Income Amount">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" v-on:click="addIncome">Save changes</button>
       </div>
     </div>
   </div>
@@ -51,7 +59,34 @@
 
 <script>
 export default{
-    name: 'IncomeTable'
+    name: 'IncomeTable',
+    data: function(){
+      return{
+      userIncome:[{
+        name: 'Total Salary',
+        amount: JSON.parse(localStorage.getItem('userIncome'))
+      }]
+      }},
+      function(){
+        let userTotalIncome=[]
+        this.userIncome.forEach(item => {
+        userTotalIncome.push(item.amount)
+        })
+        return{
+          userTotalIncome
+        }
+      },
+    methods:{
+      addIncome(){
+        // userIncome.push({
+        //   name: document.querySelector('.newIncomeName'),
+        //   amount: document.querySelector('.newIncomeAmount')
+        // });
+        // localStorage.setItem('userIncome', JSON.stringify(this.userIncome))
+        console.log(this.userTotalIncome)
+      }
+    }
+
 }
 </script>
 
