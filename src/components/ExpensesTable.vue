@@ -16,17 +16,46 @@
 
                     <td>R</td>
                     <td><div class="btn-group">
-                        <button class="btn btn-success">Edit</button>
+                     <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editExpenseModal">
+  Edit
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="editExpenseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit This Expense:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control text-center newIncomeName" type="text" placeholder="New Name" required>
+
+        <input class="form-control text-center newIncomeAmount" type="number" placeholder="New Amount" required>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
                         <button class="btn btn-danger">Del</button>
                     </div></td>
                 </tr>
             </tbody>
             <tfoot>
               <tr>
+                <th class="bg-transparent border-0"></th>
+                <th class="bg-transparent border-0"></th>
                 <th>Savings</th>
               </tr>
               <tr>
-                <td>R</td>
+                <td class="bg-transparent border-0"></td>
+                <td class="bg-transparent border-0"></td>
+                <td>R{{ totalSavings }}</td>
               </tr>
             </tfoot>
         </table>
@@ -63,6 +92,14 @@
 
 <script>
 export default{
-    name: 'ExpenseTable'
+    name: 'ExpenseTable',
+    data: function(){
+      return{
+        userExpense:[],
+        totalExpenses:0,
+        totalSavings:0
+      }
+      
+    }
 }
 </script>

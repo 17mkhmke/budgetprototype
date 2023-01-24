@@ -14,18 +14,47 @@
                     <td>{{ income.name }}</td>
                     <td>R{{ income.amount }}</td>
                     <td><div class="btn-group">
-                        <button class="btn btn-success">Edit</button>
-                        <button class="btn btn-danger">Del</button>
+                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+  Edit
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit This Income:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control text-center newIncomeName" type="text" placeholder="New Name" required>
+
+        <input class="form-control text-center newIncomeAmount" type="number" placeholder="New Amount" required>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+                        <button class="btn btn-danger" v-on:click="removeIncome(income)">Del</button>
                     </div>
                   </td>
                 </tr>
             </tbody>
             <tfoot>
               <tr>
+                <th class="bg-transparent border-0"></th>
+                <th class="bg-transparent border-0"></th>
                 <th>Total Income</th>
               </tr>
               <tr>
-                <td>R</td>
+                <td class="bg-transparent border-0"></td>
+                <td class="bg-transparent border-0"></td>
+                <td>R{{ totalIncome }}</td>
               </tr>
             </tfoot>
         </table>
@@ -43,16 +72,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input class="form-control text-center newIncomeName" type="text" placeholder="Income Name">
-        <input class="form-control text-center newIncomeAmount" type="number" placeholder="Income Amount">
+        <input class="form-control text-center newIncomeName" type="text" placeholder="Income Name" required>
+
+        <input class="form-control text-center newIncomeAmount" type="number" placeholder="Income Amount" required>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" v-on:click="addIncome">Save changes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="addIncome">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
     </div>
 </template>
 
@@ -65,28 +97,26 @@ export default{
       userIncome:[{
         name: 'Total Salary',
         amount: JSON.parse(localStorage.getItem('userIncome'))
-      }]
+      }],
+      totalIncome:parseInt(JSON.parse(localStorage.getItem('userIncome')))
       }},
-      function(){
-        let userTotalIncome=[]
-        this.userIncome.forEach(item => {
-        userTotalIncome.push(item.amount)
-        })
-        return{
-          userTotalIncome
-        }
-      },
     methods:{
       addIncome(){
-        // userIncome.push({
-        //   name: document.querySelector('.newIncomeName'),
-        //   amount: document.querySelector('.newIncomeAmount')
-        // });
-        // localStorage.setItem('userIncome', JSON.stringify(this.userIncome))
-        console.log(this.userTotalIncome)
+        let newName=document.querySelector('.newIncomeName').value
+        let newAmount=document.querySelector('.newIncomeAmount').value
+        this.totalIncome+=parseInt(newAmount)
+        this.userIncome.push({
+          name: newName,
+          amount: newAmount
+        })
+        document.querySelector('.newIncomeName').value=''
+        document.querySelector('.newIncomeAmount').value=''
+      },
+      removeIncome(income){
+        this.totalIncome=this.totalIncome-parseInt(income.amount)
+        this.userIncome.splice(this.userIncome.indexOf(income),1)
       }
     }
-
 }
 </script>
 
