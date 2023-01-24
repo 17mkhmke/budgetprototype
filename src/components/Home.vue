@@ -37,7 +37,12 @@ export default {
 
   methods: {
     setSalary(){
-      localStorage.setItem('userIncome', JSON.stringify(document.querySelector('.salaryInput').value));
+      let userIncome=[{
+        name: 'Total Salary',
+        amount: document.querySelector('.salaryInput').value
+      }]
+      localStorage.setItem('userSalary',JSON.stringify(document.querySelector('.salaryInput').value))
+      localStorage.setItem('userIncome',JSON.stringify(userIncome))
       this.$router.push('budget')
 
  }

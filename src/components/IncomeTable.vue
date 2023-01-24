@@ -28,9 +28,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input class="form-control text-center newIncomeName" type="text" placeholder="New Name" required>
+        <input class="form-control text-center" type="text" placeholder="New Name" required>
 
-        <input class="form-control text-center newIncomeAmount" type="number" placeholder="New Amount" required>
+        <input class="form-control text-center" type="number" placeholder="New Amount" required>
 
       </div>
       <div class="modal-footer">
@@ -94,11 +94,8 @@ export default{
     name: 'IncomeTable',
     data: function(){
       return{
-      userIncome:[{
-        name: 'Total Salary',
-        amount: JSON.parse(localStorage.getItem('userIncome'))
-      }],
-      totalIncome:parseInt(JSON.parse(localStorage.getItem('userIncome')))
+      userIncome:JSON.parse(localStorage.getItem('userIncome')),
+      totalIncome:parseInt(JSON.parse(localStorage.getItem('userSalary')))
       }},
     methods:{
       addIncome(){
@@ -109,13 +106,22 @@ export default{
           name: newName,
           amount: newAmount
         })
+        localStorage.setItem('userSalary', JSON.stringify(this.totalIncome))
+        localStorage.setItem('userIncome',JSON.stringify(this.userIncome))
         document.querySelector('.newIncomeName').value=''
         document.querySelector('.newIncomeAmount').value=''
+        location.reload()
       },
       removeIncome(income){
         this.totalIncome=this.totalIncome-parseInt(income.amount)
         this.userIncome.splice(this.userIncome.indexOf(income),1)
+        localStorage.setItem('userSalary',JSON.stringify(this.totalIncome))
+        localStorage.setItem('userIncome', JSON.stringify(this.userIncome))
+        location.reload()
       }
+    },
+    mounted(){
+      localStorage.setItem('userSalary',JSON.stringify(this.totalIncome))
     }
 }
 </script>

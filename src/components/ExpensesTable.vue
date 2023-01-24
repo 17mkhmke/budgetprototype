@@ -10,11 +10,11 @@
                     <th>Edit & Del</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>ExpenseName</td>
+            <tbody class="mb-5">
+                <tr v-for="expense in userExpense" :key="expense">
+                    <td>{{ expense.name }}</td>
 
-                    <td>R</td>
+                    <td>R{{ expense.amount }}</td>
                     <td><div class="btn-group">
                      <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editExpenseModal">
@@ -30,9 +30,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input class="form-control text-center newIncomeName" type="text" placeholder="New Name" required>
+        <input class="form-control text-center newExpenseName" type="text" placeholder="New Name" required>
 
-        <input class="form-control text-center newIncomeAmount" type="number" placeholder="New Amount" required>
+        <input class="form-control text-center newExpenseAmount" type="number" placeholder="New Amount" required>
 
       </div>
       <div class="modal-footer">
@@ -55,7 +55,7 @@
               <tr>
                 <td class="bg-transparent border-0"></td>
                 <td class="bg-transparent border-0"></td>
-                <td>R{{ totalSavings }}</td>
+                <td>R{{ totalIncome-totalExpenses }}</td>
               </tr>
             </tfoot>
         </table>
@@ -73,12 +73,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="text" placeholder="Expense Name">
-        <input type="number" placeholder="Expense Amount">
+        <input class="form-control newExpenseName" type="text" placeholder="Expense Name">
+        <input class="form-control newExpenseAmount" type="number" placeholder="Expense Amount">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="addExpense">Save changes</button>
       </div>
     </div>
   </div>
@@ -97,9 +97,22 @@ export default{
       return{
         userExpense:[],
         totalExpenses:0,
-        totalSavings:0
+        totalIncome:JSON.parse(localStorage.getItem('userSalary'))
       }
-      
+    },
+    methods:{
+      addExpense(){
+        let newExpenseName = document.querySelector('.newExpenseName').value
+        let newExpenseAmount = document.querySelector('.newExpenseAmount').value
+        this.totalIncome+= -newExpenseAmount
+        console.log(totalIncome)
+        this.userExpense.push({
+          name: newExpenseName,
+          amount: newExpenseAmount
+        })
+        document.querySelector('.newExpenseName').value=''
+        document.querySelector('.newExpenseAmount').value=''
+      }
     }
 }
 </script>
