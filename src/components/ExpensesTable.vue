@@ -55,7 +55,7 @@
               <tr>
                 <td class="bg-transparent border-0"></td>
                 <td class="bg-transparent border-0"></td>
-                <td>R{{ totalIncome-totalExpenses }}</td>
+                <td>R{{ totalIncome - totalExpense}}</td>
               </tr>
             </tfoot>
         </table>
@@ -97,22 +97,26 @@ export default{
     name: 'ExpenseTable',
     data: function(){
       return{
-        userExpense:[],
-        totalExpenses:0,
+        userExpense:JSON.parse(localStorage.getItem('userExpense')),
+        totalExpense:JSON.parse(localStorage.getItem('totalExpense')),
         totalIncome:JSON.parse(localStorage.getItem('userSalary'))
       }
     },
     methods:{
       addExpense(){
-        this.totalIncome+= -document.querySelector('.newExpenseAmount').value
-        console.log(this.totalIncome)
+        let newExpenseName=document.querySelector('.newExpenseName').value
+        let newExpenseAmount=document.querySelector('.newExpenseAmount').value
+        this.totalExpense+= parseInt(newExpenseAmount)
+        console.log(newExpenseAmount)
+        console.log(newExpenseName)
         this.userExpense.push({
           name: document.querySelector('.newExpenseName').value,
           amount: document.querySelector('.newExpenseAmount').value
         })
+        localStorage.setItem('totalExpense',JSON.stringify(this.totalExpense))
+        localStorage.setItem('userExpense',JSON.stringify(this.userExpense))
         console.log(this.userExpense)
-        document.querySelector('.newExpenseName').value=''
-        document.querySelector('.newExpenseAmount').value=''
+        // location.reload()
       }
     }
 }

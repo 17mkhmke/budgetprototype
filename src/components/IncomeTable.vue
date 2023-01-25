@@ -108,8 +108,6 @@ export default{
         })
         localStorage.setItem('userSalary', JSON.stringify(this.totalIncome))
         localStorage.setItem('userIncome',JSON.stringify(this.userIncome))
-        document.querySelector('.newIncomeName').value=''
-        document.querySelector('.newIncomeAmount').value=''
         location.reload()
       },
       removeIncome(income){
