@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
         <h1>Expenses & Savings Table</h1>
-        <table class="table table-success table-hover">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -87,7 +87,9 @@
 </template>
 
 <style scoped>
-
+.container-fluid{
+  padding: 0 10px;
+}
 </style>
 
 <script>
@@ -102,14 +104,13 @@ export default{
     },
     methods:{
       addExpense(){
-        let newExpenseName = document.querySelector('.newExpenseName').value
-        let newExpenseAmount = document.querySelector('.newExpenseAmount').value
-        this.totalIncome+= -newExpenseAmount
-        console.log(totalIncome)
+        this.totalIncome+= -document.querySelector('.newExpenseAmount').value
+        console.log(this.totalIncome)
         this.userExpense.push({
-          name: newExpenseName,
-          amount: newExpenseAmount
+          name: document.querySelector('.newExpenseName').value,
+          amount: document.querySelector('.newExpenseAmount').value
         })
+        console.log(this.userExpense)
         document.querySelector('.newExpenseName').value=''
         document.querySelector('.newExpenseAmount').value=''
       }

@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        <h1>Budget Page</h1>
         <IncomeTable/>
         <ExpenseTable/> 
     </div>
@@ -22,6 +21,6 @@ components: {
 
 <style scoped>
 .container-fluid{
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
 }
 </style>

@@ -24,11 +24,11 @@ export default{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000;
   min-height: 100vh;
   /* border: 2px solid yellow; */
 
-  background-color: papayawhip;
+  background-image: linear-gradient(#c4c4c4,#ff9001);
 }
 
 nav {
@@ -38,11 +38,13 @@ nav {
 nav a {
   font-weight: bold;
   color: #2c3e50;
+  transition: all 0.5s ease 0s;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ff9001;
 }
+
 
 
 </style>

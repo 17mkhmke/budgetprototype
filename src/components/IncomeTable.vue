@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
         <h1>Income Table</h1>
-        <table class="table table-success table-hover">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
