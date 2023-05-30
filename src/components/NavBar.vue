@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid px-0">
-        <nav class="navbar navbar-expand-lg bg-transparent px-1">
+        <nav class="navbar navbar-expand-lg bg-dark px-1">
   
-    <a class="navbar-brand" href="#">BBC</a>
+    <img src="https://i.postimg.cc/Hn3z1K9R/Free-Sample-By-Wix-1.jpg" class="logo" alt="Logo">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,9 +17,9 @@
         <li class="nav-item">
             <router-link to="/about">About</router-link>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
             <router-link to="/contact">Contact</router-link>
-        </li> -->
+        </li>
       </ul>
     </div>
 

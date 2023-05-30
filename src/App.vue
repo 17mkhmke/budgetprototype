@@ -2,7 +2,7 @@
   <NavBar/>
   
   <router-view/>
-
+<br><br><br>
   <Footer/>
 </template>
 
@@ -34,10 +34,12 @@ export default{
 nav {
   padding: 30px;
 }
-
+.logo {
+  width: 5rem;
+}
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
   transition: all 0.5s ease 0s;
 }
 
